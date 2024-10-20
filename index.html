@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Dating App</title>
+</head>
+<body>
+
+<div class="container" id="welcome-container">
+    <h1>Welcome to the Dating App!</h1>
+    <button class="btn login-btn" onclick="showForm('login')">Login</button>
+    <button class="btn register-btn" onclick="showForm('register')">Register</button>
+</div>
+
+<!-- Login Form -->
+<div class="container form-container" id="login-form" style="display: none;">
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="text" id="login-email" placeholder="Email" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button class="btn login-btn" type="submit">Login</button>
+        <button class="btn back-btn" type="button" onclick="goBack()">Back</button>
+    </form>
+</div>
+
+<!-- Registration Form -->
+<div class="container form-container" id="register-form" style="display: none;">
+    <h2>Register</h2>
+    <form onsubmit="handleRegister(event)">
+        <input type="text" id="register-name" placeholder="Full Name" required>
+        <input type="text" id="register-email" placeholder="Email" required>
+        <input type="password" id="register-password" placeholder="Password" required>
+        <button class="btn register-btn" type="submit">Register</button>
+        <button class="btn back-btn" type="button" onclick="goBack()">Back</button>
+    </form>
+</div>
+
+<!-- Dating App Section -->
+<div class="container dating-app" id="dating-app" style="display: none;" aria-hidden="true">
+    <h2>Welcome to the Dating App!</h2>
+    <form action="/submit-profile" method="POST">
+        <h2>Profile Information</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname" required>
+
+        <label for="birthdate">Date of Birth:</label>
+        <input type="date" id="birthdate" name="birthdate" required>
+
+        <label>Gender:</label>
+        <div>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+
+            <input type="radio" id="non-binary" name="gender" value="non-binary">
+            <label for="non-binary">Non-binary</label>
+
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label>
+        </div>
+
+        <label for="location">Location:</label>
+        <select id="location" name="location" required>
+            <option value="">Select your country</option>
+            <option value="USA">United States</option>
+            <option value="Canada">Canada</option>
+            <option value="UK">United Kingdom</option>
+            <option value="Australia">Australia</option>
+            <option value="India">India</option>
+            <option value="Germany">Germany</option>
+            <option value="France">France</option>
+            <option value="Japan">Japan</option>
+            <option value="Brazil">Brazil</option>
+            <option value="China">China</option>
+            <!-- Add more countries as needed -->
+        </select>
+
+        <label for="preferred-age">Preferred Age Range:</label>
+        <input type="range" id="preferred-age" name="preferred-age" min="18" max="100" value="25" step="1" oninput="updateAgeLabel(this.value)">
+        <span id="age-range-label">18 - 100</span>
+
+        <label for="education-level">Education Level:</label>
+        <select id="education-level" name="education-level" required>
+            <option value="high-school">High School</option>
+            <option value="bachelor">Bachelor's Degree</option>
+            <option value="master">Master's Degree</option>
+            <option value="phd">PhD</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="occupation">Occupation:</label>
+        <input type="text" id="occupation" name="occupation" required>
+
+        <label>Smoker:</label>
+        <div>
+            <input type="radio" id="smoker-yes" name="smoker" value="yes">
+            <label for="smoker-yes">Yes</label>
+
+            <input type="radio" id="smoker-no" name="smoker" value="no">
+            <label for="smoker-no">No</label>
+
+            <input type="radio" id="smoker-sometimes" name="smoker" value="sometimes">
+            <label for="smoker-sometimes">Sometimes</label>
+        </div>
+
+        <label>Drinker:</label>
+        <div>
+            <input type="radio" id="drinker-yes" name="drinker" value="yes">
+            <label for="drinker-yes">Yes</label>
+
+            <input type="radio" id="drinker-no" name="drinker" value="no">
+            <label for="drinker-no">No</label>
+
+            <input type="radio" id="drinker-sometimes" name="drinker" value="sometimes">
+            <label for="drinker-sometimes">Sometimes</label>
+        </div>
+
+        <label for="fun-fact">Fun Fact:</label>
+        <textarea id="fun-fact" name="fun-fact" rows="3" required></textarea>
+
+        <label for="favorite-activities">Favorite Activities:</label>
+        <textarea id="favorite-activities" name="favorite-activities" rows="3"></textarea>
+
+        <label for="ideal-date">Ideal Date:</label>
+        <textarea id="ideal-date" name="ideal-date" rows="3"></textarea>
+
+        <label for="terms">
+            <input type="checkbox" id="terms" name="terms" required>
+            I agree to the terms and conditions
+        </label>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script src="index.js"></script>
+</body>
+</html>
